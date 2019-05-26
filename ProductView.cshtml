@@ -1,0 +1,99 @@
+﻿@model IEnumerable<WebAppProject1.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Products</h2>
+
+<form class="form-inline">
+    <div>
+        <input class="form-control" placeholder="Search by Product Name and Color" type="text" name="searchString" />
+    </div>
+    <br />
+    <div>
+        <button class="btn btn-primary btn-lg" type="submit" value="Search"> Search </button>
+    </div>
+
+
+</form>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Product", FormMethod.Get))
+{
+    @*<div>
+
+            <input id="Submit1" type="submit" value="Filter" placeholder=""/>
+            <br>
+        </div>*@
+}
+<input type="button" value="Filter products" onclick="window.location='@Url.Action("Index3", "Products")'" />
+
+<table class="table">
+    <tr class="table-secondary">
+        <th>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PPrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PColor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PPrice)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                @Html.ActionLink("Add to Cart", "Details", new { id = item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+
+            </td>
+        </tr>
+    }
+
+</table>
